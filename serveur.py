@@ -29,8 +29,7 @@ while True:
     print("Message reçu :", data)
 
     # Envoi d'un message de confirmation
-    response_srv = 'Merci pour votre message'
-    connexion.send(response_srv.encode('utf-8'))
+    connexion.send(data)
 
     # Fermeture de la connexion
     connexion.close()
