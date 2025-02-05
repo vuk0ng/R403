@@ -3,7 +3,7 @@ import sys
 
 # Paramètres de connexion
 TCP_IP_srv = '10.0.0.5'
-TCP_PORT = 2001
+TCP_PORT = 2000
 confirmation_msg = 'Connexion réssie : message bien reçu'
 
 # Création du socket
@@ -21,17 +21,16 @@ server_socket.bind((TCP_IP_srv, TCP_PORT))
 server_socket.listen(3)
 print("En écoute ...")
 
-# En attente d'une connexion
-connexion, adresse = server_socket.accept()
+while True:
+    connexion, adresse = server_socket.accept()
 
-# Connexion établie
-print('Connecté avec : ', adresse)
-data = connexion.recv(1024)
-print("Message reçu : ", data)
+    print('Connecté avec :', adresse)
+    data = connexion.recv(1024)
+    print("Message reçu :", data)
 
-# Envoi d'un message de confirmation
-response_server = 'Merci pour votre message'
-connexion.send(response_server.encode('utf-8'))
+    # Envoi d'un message de confirmation
+    response_srv = 'Merci pour votre message'
+    connexion.send(response_srv.encode('utf-8'))
 
-# Fermeture de la connexion
-connexion.close()
+    # Fermeture de la connexion
+    connexion.close()
